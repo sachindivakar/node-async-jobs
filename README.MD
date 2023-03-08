@@ -1,5 +1,6 @@
 ### NodeJS Asynchronous patterns
 
+Node version - 
 1. Polling Cron Job
 2. Worker threads
 3. Using Bull queue
@@ -16,4 +17,5 @@
 7. Add build-spec.yaml for pipeline integration
 8. Add terraform scripts for ECS deployment.
 9. Add terraform scripts for EKS deployment.
-9. Add fluentd log aggregator
+10. Add fluentd log aggregator
+11. Add tests

@@ -5,7 +5,11 @@ const {scheduler} = require("./src/polling-job")
 
 const {baseRouter} = require("./src/routes")
 const knex = require('./src/db/index.js')
-require('dotenv').config()
+
+if (process.NODE_ENV != 'production'){
+    require('dotenv').config({ path: './local.env'} )
+}
+
 
 
 knex.migrate.latest()
