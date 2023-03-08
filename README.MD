@@ -1,6 +1,6 @@
 ### NodeJS Asynchronous patterns
 
-Node version - 
+Node version - v16 or above
 1. Polling Cron Job
 2. Worker threads
 3. Using Bull queue
@@ -19,3 +19,4 @@ Node version -
 9. Add terraform scripts for EKS deployment.
 10. Add fluentd log aggregator
 11. Add tests
+12. Move literals to constants file.

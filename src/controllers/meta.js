@@ -16,7 +16,7 @@ module.exports = {
       try{
          const request = req.body
          const result = await meta.createMetaEntry(request)
-         await meta.createMetaEntryUsingWorkerThread()
+         meta.createMetaEntryUsingWorkerThread()
          return setSuccessResponse(res,result)
       }catch(e){
          console.error(e)
