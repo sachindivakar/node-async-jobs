@@ -15,7 +15,8 @@ module.exports = {
    createMetaEntryUsingWorkerThread: async (req,res)=> {
       try{
          const request = req.body
-         const result = await meta.createMetaEntryUsingWorkerThread(request)
+         const result = await meta.createMetaEntry(request)
+         await meta.createMetaEntryUsingWorkerThread()
          return setSuccessResponse(res,result)
       }catch(e){
          console.error(e)
