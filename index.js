@@ -12,6 +12,7 @@ if (process.NODE_ENV != 'production'){
 
 
 
+
 knex.migrate.latest()
   .then(async function() {
     scheduler.start()
@@ -23,8 +24,7 @@ knex.migrate.latest()
        console.error(err)
        next()
     })
-    
-    
+      
     app.listen(process.env.PORT || 4000,()=>{
         console.log("Server started running")
     })

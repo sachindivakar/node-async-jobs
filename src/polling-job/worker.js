@@ -5,10 +5,14 @@ const {
  const {transactions}  = require("../services")
   if (isMainThread) {
     module.exports = function processRequest() {
+ 
       return new Promise((resolve, reject) => {
         const worker = new Worker(__filename, {
           workerData: "Worker thread invoked",
         });
+        setTimeout(()=>{
+            console.log(worker.performance.eventLoopUtilization());
+        },100)
         worker.on('message', (message)=>{
             console.info(message)
             resolve()
@@ -23,6 +27,7 @@ const {
   } else {
     (async ()=>{
         await transactions.generateRuleMetrics()
+
         parentPort.postMessage("Succeeded")
         process.exit(0)
     })()

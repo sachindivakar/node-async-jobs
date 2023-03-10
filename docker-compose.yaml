@@ -1,0 +1,59 @@
+version: '3.8'
+services:
+  app:
+    container_name: server
+    build:
+      context: .
+    environment:
+      NODE_ENV: production
+      DB_HOST: db
+      DB_NAME: transactions
+      DB_USER: root
+      DB_PASSWORD: newpassword
+      PORT: 4001
+      REDIS_URL: redis://redis:6379
+    ports:
+      - "4001:4001"      
+    depends_on:
+      - db
+      - redis
+  db:    
+    container_name: pg_container
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: newpassword
+      POSTGRES_DB: transactions
+    ports:
+      - "5433:5432"
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+  redis:
+      image: redis:latest
+      ports:
+        - 6380:6379
+      command: ["redis-server", "--appendonly", "yes"]
+      volumes:
+        - ./data:/data
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    environment:
+      - REDIS_HOSTS=redis:redis:6379
+      - HTTP_USER=root
+      - HTTP_PASSWORD=qwerty
+    ports:
+      - 8085:8081
+    depends_on:
+      - redis
+    
+  
